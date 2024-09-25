@@ -1,8 +1,7 @@
 import {animated, useSpringValue} from '@react-spring/web';
-import {useEffect, useRef, useState} from 'react';
+import {useEffect, useState} from 'react';
 
 export default function App() {
-  const mountedRef = useRef(false);
   const [side, setSide] = useState<-1 | 0 | 1>(0);
 
   const leftArmX = useSpringValue(50);
@@ -18,10 +17,9 @@ export default function App() {
   const rightLegY = useSpringValue(190);
 
   useEffect(() => {
-    if (!mountedRef.current) {
+    if (side === 0) {
       return;
-    }
-    if (side === -1) {
+    } else if (side === -1) {
       leftArmX.start(70);
       leftArmY.start(40);
 
@@ -48,12 +46,6 @@ export default function App() {
     }
   }, [side]);
 
-  useEffect(() => {
-    mountedRef.current = true;
-    return () => {
-      mountedRef.current = false;
-    };
-  }, []);
 
   return (
     <div className="p-8">
