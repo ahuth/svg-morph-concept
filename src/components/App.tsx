@@ -1,19 +1,19 @@
 import {useEffect, useState} from 'react';
+import {useThrottledCallback} from 'use-debounce';
 import Guy from './Guy';
 import Handholds from './Handholds';
 
 export default function App() {
   const [side, setSide] = useState(false);
 
+  const handleKeyPress = useThrottledCallback((event: KeyboardEvent) => {
+    if (event.key === ' ') {
+      setSide((val) => !val);
+    }
+  }, 750);
+
   useEffect(() => {
     window.addEventListener('keypress', handleKeyPress);
-
-    function handleKeyPress(event: KeyboardEvent) {
-      if (event.key === ' ') {
-        setSide((val) => !val);
-      }
-    }
-
     return () => window.removeEventListener('keypress', handleKeyPress);
   }, []);
 
