@@ -2,20 +2,14 @@ import {useEffect, useState} from 'react';
 import Guy from './Guy';
 
 export default function App() {
-  const [side, setSide] = useState<-1 | 0 | 1>(0);
+  const [side, setSide] = useState(false);
 
   useEffect(() => {
     window.addEventListener('keypress', handleKeyPress);
 
     function handleKeyPress(event: KeyboardEvent) {
       if (event.key === ' ') {
-        setSide((val) => {
-          if (val <= 0) {
-            return 1;
-          } else {
-            return -1;
-          }
-        });
+        setSide((val) => !val);
       }
     }
 

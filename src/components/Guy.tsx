@@ -3,7 +3,7 @@ import {useEffect} from 'react';
 
 type Props = {
   className?: string;
-  side: -1 | 0 | 1;
+  side: boolean;
 };
 
 export default function Guy({className, side}: Props) {
@@ -20,9 +20,7 @@ export default function Guy({className, side}: Props) {
   const rightLegY = useSpringValue(190);
 
   useEffect(() => {
-    if (side === 0) {
-      return;
-    } else if (side === -1) {
+    if (side) {
       leftArmX.start(70);
       leftArmY.start(40);
 
