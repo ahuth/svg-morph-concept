@@ -2,6 +2,9 @@ import {animated, useSpringValue} from '@react-spring/web';
 import {useEffect} from 'react';
 
 type Props = {
+  /**
+   * Which side of the climber is "active" or "reaching". False for one side, true for the other.
+   */
   side: boolean;
 };
 
