@@ -14,12 +14,12 @@ export default function Handholds({increment}: Props) {
 
   return (
     <>
-      <Handhold y={y} />
+      <HandholdPair y={y} />
     </>
   );
 }
 
-function Handhold({y}: {y: SpringValue<number>}) {
+function HandholdPair({y}: {y: SpringValue<number>}) {
   return (
     <>
       {/* prettier-ignore */}
