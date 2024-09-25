@@ -17,6 +17,26 @@ export default function App() {
   const rightLegY = useSpringValue(190);
 
   useEffect(() => {
+    window.addEventListener('keypress', handleKeyPress);
+
+    function handleKeyPress(event: KeyboardEvent) {
+      if (event.key === ' ') {
+        setSide((val) => {
+          if (val === 0) {
+            return -1;
+          } else if (val === -1) {
+            return 1;
+          } else {
+            return -1;
+          }
+        });
+      }
+    }
+
+    return () => window.removeEventListener('keypress', handleKeyPress);
+  }, []);
+
+  useEffect(() => {
     if (side === 0) {
       return;
     } else if (side === -1) {
@@ -48,22 +68,17 @@ export default function App() {
 
   return (
     <div className="mx-auto w-fit p-8">
-      <button
-        className="rounded bg-gray-300 px-4 py-2 font-semibold hover:bg-gray-600 hover:text-white active:bg-gray-700 disabled:cursor-not-allowed disabled:bg-gray-300"
-        onClick={() => {
-          if (side === 0) {
-            setSide(-1);
-          } else if (side === -1) {
-            setSide(1);
-          } else {
-            setSide(-1);
-          }
-        }}
-      >
-        Climb!
-      </button>
+      <p>
+        Climb like your life depends on it! (By pressing the <kbd>Space</kbd>{' '}
+        bar)
+      </p>
 
-      <svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+      <svg
+        className="mx-auto"
+        width="200"
+        height="200"
+        xmlns="http://www.w3.org/2000/svg"
+      >
         {/* Head */}
         {/* prettier-ignore */}
         <circle cx="100" cy="50" r="20" stroke="black" strokeWidth="2" fill="tan" />
