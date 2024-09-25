@@ -22,9 +22,7 @@ export default function App() {
     function handleKeyPress(event: KeyboardEvent) {
       if (event.key === ' ') {
         setSide((val) => {
-          if (val === 0) {
-            return -1;
-          } else if (val === -1) {
+          if (val <= 0) {
             return 1;
           } else {
             return -1;
