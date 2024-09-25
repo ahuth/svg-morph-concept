@@ -1,7 +1,8 @@
 import {animated, useSpringValue} from '@react-spring/web';
-import {useEffect, useState} from 'react';
+import {useEffect, useRef, useState} from 'react';
 
 export default function App() {
+  const mountedRef = useRef(false);
   const [side, setSide] = useState<-1 | 0 | 1>(0);
 
   const leftArmX = useSpringValue(50);
@@ -17,6 +18,9 @@ export default function App() {
   const rightLegY = useSpringValue(190);
 
   useEffect(() => {
+    if (!mountedRef.current) {
+      return;
+    }
     if (side === -1) {
       leftArmX.start(70);
       leftArmY.start(40);
@@ -43,6 +47,13 @@ export default function App() {
       rightLegY.start(190);
     }
   }, [side]);
+
+  useEffect(() => {
+    mountedRef.current = true;
+    return () => {
+      mountedRef.current = false;
+    };
+  }, []);
 
   return (
     <div className="p-8">
@@ -72,19 +83,19 @@ export default function App() {
 
         {/* Left arm */}
         {/* prettier-ignore */}
-        <animated.line x1="90" y1="80" x2={leftArmX.get()} y2={leftArmY.get()} stroke="black" strokeWidth="4" />
+        <animated.line x1="90" y1="80" x2={leftArmX} y2={leftArmY} stroke="black" strokeWidth="4" />
 
         {/* Right arm */}
         {/* prettier-ignore */}
-        <animated.line x1="110" y1="80" x2={rightArmX.get()} y2={rightArmY.get()} stroke="black" strokeWidth="4" />
+        <animated.line x1="110" y1="80" x2={rightArmX} y2={rightArmY} stroke="black" strokeWidth="4" />
 
         {/* Left leg */}
         {/* prettier-ignore */}
-        <animated.line x1="90" y1="130" x2={leftLegX.get()} y2={leftLegY.get()} stroke="black" strokeWidth="4" />
+        <animated.line x1="90" y1="130" x2={leftLegX} y2={leftLegY} stroke="black" strokeWidth="4" />
 
         {/* Right leg */}
         {/* prettier-ignore */}
-        <animated.line x1="110" y1="130" x2={rightLegX.get()} y2={rightLegY.get()} stroke="black" strokeWidth="4" />
+        <animated.line x1="110" y1="130" x2={rightLegX} y2={rightLegY} stroke="black" strokeWidth="4" />
       </svg>
     </div>
   );
