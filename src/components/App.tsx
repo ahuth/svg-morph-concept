@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
 import Guy from './Guy';
-import Handhold from './Handhold';
+import Handholds from './Handholds';
 
 export default function App() {
   const [side, setSide] = useState(false);
@@ -29,7 +29,7 @@ export default function App() {
         height="200"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <Handhold />
+        <Handholds increment={side} />
         <Guy side={side} />
       </svg>
     </div>
