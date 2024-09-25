@@ -2,6 +2,10 @@ import {animated, useSpringValue, type SpringValue} from '@react-spring/web';
 import {useEffect, useRef} from 'react';
 
 type Props = {
+  /**
+   * Change this value to trigger the handholds to move down. Doesn't matter what the value is, it
+   * just needs to change.
+   */
   increment: unknown;
 };
 
