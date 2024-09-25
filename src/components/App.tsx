@@ -6,22 +6,31 @@ import Handholds from './Handholds';
 export default function App() {
   const [side, setSide] = useState(false);
 
-  const handleKeyPress = useThrottledCallback((event: KeyboardEvent) => {
-    if (event.key === ' ') {
-      setSide((val) => !val);
-    }
+  const toggleSide = useThrottledCallback(() => {
+    setSide((val) => !val);
   }, 750);
 
   useEffect(() => {
     window.addEventListener('keypress', handleKeyPress);
-    return () => window.removeEventListener('keypress', handleKeyPress);
+    window.addEventListener('click', toggleSide);
+
+    function handleKeyPress(event: KeyboardEvent) {
+      if (event.key === ' ') {
+        toggleSide();
+      }
+    }
+
+    return () => {
+      window.removeEventListener('keypress', handleKeyPress);
+      window.removeEventListener('click', toggleSide);
+    };
   }, []);
 
   return (
     <div className="mx-auto flex min-h-screen w-fit flex-col px-8 pt-8">
       <p>
         Climb like your life depends on it! (By pressing the <kbd>Space</kbd>{' '}
-        bar)
+        bar or clicking the screen)
       </p>
       <svg
         className="mx-auto min-h-52 flex-grow"
