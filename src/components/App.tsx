@@ -18,7 +18,7 @@ export default function App() {
   }, []);
 
   return (
-    <div className="mx-auto flex min-h-screen w-fit flex-col p-8">
+    <div className="mx-auto flex min-h-screen w-fit flex-col px-8 pt-8">
       <p>
         Climb like your life depends on it! (By pressing the <kbd>Space</kbd>{' '}
         bar)
