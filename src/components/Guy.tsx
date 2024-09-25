@@ -2,11 +2,10 @@ import {animated, useSpringValue} from '@react-spring/web';
 import {useEffect} from 'react';
 
 type Props = {
-  className?: string;
   side: boolean;
 };
 
-export default function Guy({className, side}: Props) {
+export default function Guy({side}: Props) {
   const leftArmX = useSpringValue(50);
   const leftArmY = useSpringValue(120);
 
@@ -48,12 +47,7 @@ export default function Guy({className, side}: Props) {
   }, [side]);
 
   return (
-    <svg
-      className={className}
-      width="200"
-      height="200"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+    <>
       {/* Head */}
       {/* prettier-ignore */}
       <circle cx="100" cy="50" r="20" stroke="black" strokeWidth="2" fill="tan" />
@@ -77,6 +71,6 @@ export default function Guy({className, side}: Props) {
       {/* Right leg */}
       {/* prettier-ignore */}
       <animated.line x1="110" y1="130" x2={rightLegX} y2={rightLegY} stroke="black" strokeWidth="4" />
-    </svg>
+    </>
   );
 }

@@ -22,7 +22,14 @@ export default function App() {
         Climb like your life depends on it! (By pressing the <kbd>Space</kbd>{' '}
         bar)
       </p>
-      <Guy className="mx-auto" side={side} />
+      <svg
+        className="mx-auto"
+        width="200"
+        height="200"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <Guy side={side} />
+      </svg>
     </div>
   );
 }
