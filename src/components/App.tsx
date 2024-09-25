@@ -46,9 +46,8 @@ export default function App() {
     }
   }, [side]);
 
-
   return (
-    <div className="p-8">
+    <div className="mx-auto w-fit p-8">
       <button
         className="rounded bg-gray-300 px-4 py-2 font-semibold hover:bg-gray-600 hover:text-white active:bg-gray-700 disabled:cursor-not-allowed disabled:bg-gray-300"
         onClick={() => {
