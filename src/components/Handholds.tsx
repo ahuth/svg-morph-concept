@@ -1,5 +1,5 @@
 import {animated, useSpringValue, type SpringValue} from '@react-spring/web';
-import {useEffect} from 'react';
+import {useEffect, useRef} from 'react';
 
 type Props = {
   increment: unknown;
@@ -7,10 +7,20 @@ type Props = {
 
 export default function Handholds({increment}: Props) {
   const y = useSpringValue(40);
+  const isMountedRef = useRef(false);
 
   useEffect(() => {
-    console.log('Push');
+    if (isMountedRef.current) {
+      y.start(y.get() + 60);
+    }
   }, [increment]);
+
+  useEffect(() => {
+    isMountedRef.current = true;
+    return () => {
+      isMountedRef.current = false;
+    };
+  }, []);
 
   return (
     <>
