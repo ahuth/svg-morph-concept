@@ -32,7 +32,7 @@ export default function Handholds({increment}: Props) {
 
   return (
     <>
-      {makeReversedRange(count).map((num) => {
+      {reverse(range(count)).map((num) => {
         return <HandholdPair key={num} num={num} y={y} />;
       })}
     </>
@@ -52,8 +52,4 @@ function HandholdPair({num, y}: {num: number; y: SpringValue<number>}) {
       />
     </>
   );
-}
-
-function makeReversedRange(length: number) {
-  return reverse(range(length));
 }
